@@ -27,7 +27,6 @@ const App: FC = () => {
   };
 
   // Task Silme Fonksiyonu
-
  const handleDelete = (index:number):void=> {
  setTaskList(
   taskList.filter((task)=>{
@@ -36,12 +35,11 @@ const App: FC = () => {
  )
 };
 
-
-
    
   return (
     <>
-      <div>
+      <div className="taskInput">
+        <h3>Görev Ekleme </h3>
         <input
           type="text"
           placeholder="Görevi giriniz"
@@ -56,7 +54,9 @@ const App: FC = () => {
           value={date}
           onChange={handleChange}
         />
-        <button onClick={handleAdd}>Yeni Görev Ekle</button>
+        <button className="addbutton" onClick={handleAdd}>
+          Yeni Görev Ekle
+        </button>
       </div>
       <Todolist taskList={taskList} handleDelete={handleDelete} />
     </>
