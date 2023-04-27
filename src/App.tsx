@@ -26,7 +26,19 @@ const App: FC = () => {
 
   };
 
-   console.log(taskList);
+  // Task Silme Fonksiyonu
+
+ const handleDelete = (index:number):void=> {
+ setTaskList(
+  taskList.filter((task)=>{
+ return task.index !== index;
+ })
+ )
+};
+
+
+
+   
   return (
     <>
       <div>
@@ -46,7 +58,7 @@ const App: FC = () => {
         />
         <button onClick={handleAdd}>Yeni Görev Ekle</button>
       </div>
-      <Todolist taskList={taskList} />
+      <Todolist taskList={taskList} handleDelete={handleDelete} />
     </>
   );
 };
