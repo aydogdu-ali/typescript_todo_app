@@ -1,19 +1,32 @@
-import  {ChangeEvent, FC, useState} from "react"
-import './App.css'
+import { ChangeEvent, FC, useState } from "react";
+import { todoType } from "./types/apptypes";
+import "./App.css";
+import Todolist from "./components/Todolist";
 
-const App:FC = () => {
-  const [task, setTask] = useState<string>("")
-  const [date, setDate] = useState<string>();
-  
-const handleChange =(e:ChangeEvent<HTMLInputElement>)=>{
-  setTask(e.target.value)
-    setDate(e.target.value);
-}
+const App: FC = () => {
+  const [task, setTask] = useState<string>("");
+  const [date, setDate] = useState<string>("");
+  const [taskList, setTaskList] = useState<todoType[]>([]);
 
-console.log(task, date)
-const handleAdd =()=>{
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    if (e.target.name == "task") {
+      setTask(e.target.value);
+    } else { e.target.name == "date"; 
+      setDate(e.target.value);
+    }
+  };
 
-}
+ 
+// Task Ekleme Fonksiyonu
+  const handleAdd = () => {
+    const addTask = {task,date}
+    setTaskList([...taskList, addTask]);
+    setTask("")
+    setDate("")
+
+  };
+
+   console.log(taskList);
   return (
     <>
       <div>
@@ -33,8 +46,9 @@ const handleAdd =()=>{
         />
         <button onClick={handleAdd}>Yeni Görev Ekle</button>
       </div>
+      <Todolist taskList={taskList} />
     </>
   );
-}
+};
 
-export default App
+export default App;
